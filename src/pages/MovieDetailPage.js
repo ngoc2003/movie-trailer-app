@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 // import useSWR from "swr";
-// import { fetcher } from "../config";
+import { fetcher } from "../config";
 import axios from "axios";
+import useSWR from "swr";
 // https://api.themoviedb.org/3/movie/{movie_id}?api_key=1a763884400befdbd957d043e8e9e19c
 const getData = async (movieId) => {
   try {
     const response = await axios.get(
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a763884400befdbd957d043e8e9e19c`
     );
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log(error);
   }
+};
+const getCreditData = async (movieId) => {
+  const response = await axios.get(
+    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=1a763884400befdbd957d043e8e9e19c`
+  );
+  return response.data;
 };
 function MovieDetailPage() {
   const { movieId } = useParams();
@@ -22,12 +28,12 @@ function MovieDetailPage() {
   useEffect(() => {
     getData(movieId).then((data) => setData(data));
   }, [movieId]);
-  console.log(data);
-  //   const { data } = useSWR(
-  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a763884400befdbd957d043e8e9e19c`,
-  //     fetcher
-  //   );
-  console.log(data);
+  // console.log(data);
+  // const { data } = useSWR(
+  //   `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a763884400befdbd957d043e8e9e19c`,
+  //   fetcher
+  // );
+  // console.log(data);
   const { backdrop_path, poster_path, title, genres, overview } = data;
   return (
     <div className="page-container">
@@ -63,9 +69,23 @@ function MovieDetailPage() {
           ))}
         </div>
       )}
-      <p className="text-center text-sm leading-relaxed w-[80%] mx-auto pb-10">{overview}</p>
+      <p className="text-center text-sm leading-relaxed w-[80%] mx-auto pb-10">
+        {overview}
+      </p>
+      <MovieCredit></MovieCredit>
     </div>
   );
 }
 
+function MovieCredit() {
+  const { movieId } = useParams();
+  const [data, setData] = useState({});
+  useEffect(() => {
+    getCreditData(movieId).then((data) => setData(data));
+  }, [movieId]);
+  const { cast } = data;
+  return <>
+    <h2 className="text-center text-2xl pb-10">Series Cast</h2>
+  </>;
+}
 export default MovieDetailPage;

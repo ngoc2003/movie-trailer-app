@@ -3,18 +3,24 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="header flex items-center mb-5 justify-center text-white gap-x-5 py-10">
+    <header className="header flex items-center text-white gap-x-5 py-8 page-container">
       <NavLink
-        to="/"
+        to="/series"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
-        Home
+        TV Series
       </NavLink>
       <NavLink
         to="/movies"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
         Movies
+      </NavLink>
+      <NavLink
+        to="/anime"
+        className={({ isActive }) => (isActive ? "text-primary" : "")}
+      >
+        Anime
       </NavLink>
     </header>
   );
