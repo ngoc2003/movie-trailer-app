@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { API } from "../../config";
+import Button from "../Button";
 
 const MovieCard = ({ item }) => {
   const { title, vote_average, release_date, poster_path, id } = item;
@@ -8,7 +10,7 @@ const MovieCard = ({ item }) => {
     <div className="movie-card flex flex-col h-full text-white rounded-lg p-3 bg-slate-800 select-none">
       <img
         className="w-full object-cover rounded-lg mb-5"
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        src={API.getImageUrl(poster_path, "w500")}
         alt=""
       />
       <h3 className="text-xl mb-3 text-bold">{title}</h3>
@@ -17,12 +19,9 @@ const MovieCard = ({ item }) => {
           <span>{new Date(release_date).getFullYear()}</span>
           <span>{vote_average}</span>
         </div>
-        <button
-          onClick={() => navigate(`/movies/${id}`)}
-          className="py-3 px-6 rounded-lg capitalize bg-primary w-full"
-        >
-          Watch now
-        </button>
+        <Button onClick={() => navigate(`/movies/${id}`)} fluid>
+          Watch Now
+        </Button>
       </div>
     </div>
   );

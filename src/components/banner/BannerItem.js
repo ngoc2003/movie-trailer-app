@@ -1,31 +1,39 @@
+import { useNavigate } from "react-router-dom";
+import useSWR from "swr";
+import { API, fetcher } from "../../config";
+import Button from "../Button";
+import Loading from "../Loading";
+
 export default function BannerItem({ item }) {
-  const { poster_path, title, genres } = item;
-  console.log(item);
+  const navigate = useNavigate();
+  const { poster_path, title, id } = item;
+  const { data, error } = useSWR(API.getMovieDetail(id), fetcher);
+  if (error) return <div>failed to load</div>;
+  if (!data) return <Loading></Loading>;
+  const { genres } = data;
   return (
     <div className="w-full h-full relative rounded-lg">
       <div className="overlay absolute inset-0 bg-gradient-to-t from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)] rounded-lg "></div>
       <img
         className="w-full h-full object-contain rounded-lg"
-        src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+        src={API.getImageUrl(poster_path, "w500")}
         alt=""
       />
       <div className="content absolute left-5 bottom-5 w-full text-white">
-        <h2 className="font-bold text-3xl mb-5">{title}</h2>
+        <h2 className="section-title text-4xl">{title}</h2>
         <div className="flex items-center gap-x-3 mb-8">
-          <span className=" py-1 px-3 rounded-md border border-white">
-            Avenger
-          </span>
-
-          {/* <span className=" py-1 px-3 rounded-md border border-white">
-            Avengers
-          </span>
-          <span className=" py-1 px-3 rounded-md border border-white">
-            Avengers
-          </span> */}
+          {genres?.map((genre) => (
+            <span
+              className=" py-1 px-3 rounded-md border border-white"
+              key={genre.id}
+            >
+              {genre.name}
+            </span>
+          ))}
         </div>
-        <button className="py-3 px-6 rounded-lg font-medium bg-primary text-white">
+        <Button onClick={() => navigate(`/movies/${id}`)} className="w-auto">
           Watch Now
-        </button>
+        </Button>
       </div>
     </div>
   );

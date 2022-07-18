@@ -13,13 +13,17 @@
     max-width: 900px;
     margin: 0 auto;
   }
+  .section-title{
+    @apply capitalize text-white mb-6 text-3xl font-bold;
+    &-primary{
+      @apply text-primary capitalize  mb-6 text-3xl font-bold
+    }
+  }
   .page-container-fluid {
     max-width: 1440px;
     margin: 0 auto;
   }
   .movie-list .swiper-slide {
-    // display: flex;
-    // width: 30%;
     height: auto;
   }
 
@@ -27,3 +31,7 @@
     height: 100%;
   }
 }
+
+@import "./assets/scss/loading";
+
+@import "./assets/scss/pagination";

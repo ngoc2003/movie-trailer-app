@@ -8,11 +8,12 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./components/layout/Main";
 import MoviePage from "./pages/MoviePage";
 import MovieDetailPage from "./pages/MovieDetailPage";
+import Loading from "./components/Loading";
 // https://api.themoviedb.org/3/search/movie?api_key=1a763884400befdbd957d043e8e9e19c&query=''
 // https://api.themoviedb.org/3/movie/now_playing?1a763884400befdbd957d043e8e9e19c&language=en-US&page=1
 function App() {
   return (
-    <>
+    <Loading>
       <Routes>
         <Route element={<Main></Main>}>
           <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -20,7 +21,7 @@ function App() {
           <Route path="/movies/:movieId" element={<MovieDetailPage></MovieDetailPage>}></Route>
         </Route>
       </Routes>
-    </>
+    </Loading>
   );
 }
 

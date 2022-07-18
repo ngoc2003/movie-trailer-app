@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 // import useSWR from "swr";
-import { fetcher } from "../config";
+import { API, fetcher } from "../config";
 import useSWR from "swr";
 import { SwiperSlide, Swiper } from "swiper/react";
 import MovieCard from "../components/movie/MovieCard";
+import Loading from "../components/Loading";
 
 function MovieDetailPage() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}?api_key=1a763884400befdbd957d043e8e9e19c`,
-    fetcher
-  );
+  const { data, error } = useSWR(API.getMovieDetail(movieId), fetcher);
   if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
+  if (!data) return <Loading></Loading>;
   const {
     backdrop_path,
     poster_path,
@@ -32,14 +29,14 @@ function MovieDetailPage() {
         <div
           className="w-full h-full bg-cover bg-no-repeat"
           style={{
-            backgroundImage: `url(https://image.tmdb.org/t/p/original/${backdrop_path})`,
+            backgroundImage: `url(${API.getImageUrl(backdrop_path)})`,
           }}
         ></div>
 
         <div className="absolute flex top-0 left-0 h-full w-full px-8 items-center">
           <div className=" h-[400px] shrink-0">
             <img
-              src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+              src={API.getImageUrl(poster_path)}
               className="w-auto h-full pb-10 object-cover rounded-xl mx-auto"
               alt=""
             />
@@ -91,7 +88,7 @@ function MovieDetailPage() {
 function MovieCredit() {
   const { movieId } = useParams();
   const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=1a763884400befdbd957d043e8e9e19c`,
+    API.getDetailMeta(movieId, "credits"),
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -99,7 +96,7 @@ function MovieCredit() {
   const { cast } = data;
   return (
     <div className="py-10">
-      <h2 className="capitalize text-primary mb-6 text-3xl font-bold">
+      <h2 className="section-title-primary">
         Series Cast
       </h2>
       <Swiper grapcursor="true" spaceBetween={40} slidesPerView={5}>
@@ -107,7 +104,7 @@ function MovieCredit() {
           <SwiperSlide key={item.id}>
             <div className="cast-item">
               <img
-                src={`https://image.tmdb.org/t/p/original/${item.profile_path}`}
+                src={API.getImageUrl(item.profile_path)}
                 alt=""
                 className="w-full object-cover rounded-lg"
               />
@@ -122,10 +119,7 @@ function MovieCredit() {
 
 function MovieVideo() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=1a763884400befdbd957d043e8e9e19c`,
-    fetcher
-  );
+  const { data, error } = useSWR(API.getDetailMeta(movieId, "videos"), fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;
 
@@ -138,13 +132,13 @@ function MovieVideo() {
         })
         ?.map((item) => (
           <div key={item.id} className="w-full aspect-video py-10">
-            <h2 className="capitalize text-primary mb-6 text-3xl font-bold">
+            <h2 className="section-title-primary">
               {item.name}
             </h2>
             <iframe
               id={item.id}
               className="w-full h-full object-fill"
-              src={`https://www.youtube.com/embed/${item.key}`}
+              src={API.getYoutubeVideo(item.key)}
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -159,7 +153,7 @@ function MovieVideo() {
 function MovieSimilar() {
   const { movieId } = useParams();
   const { data, error } = useSWR(
-    `https://api.themoviedb.org/3/movie/${movieId}/similar?api_key=1a763884400befdbd957d043e8e9e19c`,
+    API.getDetailMeta(movieId, "similar"),
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -168,7 +162,7 @@ function MovieSimilar() {
 
   return (
     <div className="py-10">
-      <h2 className="capitalize text-primary mb-6 text-3xl font-bold">
+      <h2 className="section-title-primary">
         Similar Movies
       </h2>
       <div className="movie-list">
