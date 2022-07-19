@@ -20,7 +20,7 @@ export default function BannerItem({ item }) {
         alt=""
       />
       <div className="content absolute left-5 bottom-5 w-full text-white">
-        <h2 className="section-title text-4xl">{title}</h2>
+        <h2 className="capitalize text-white mb-6 font-bold text-4xl">{title}</h2>
         <div className="flex items-center gap-x-3 mb-8">
           {genres?.map((genre) => (
             <span

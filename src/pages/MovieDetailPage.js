@@ -9,7 +9,6 @@ import { MovieVideo } from "../components/movie/MovieData/MovieVideo";
 
 function MovieDetailPage() {
   const { movieId } = useParams();
-  console.log(movieId)
   const { data, error } = useSWR(API.getMovieDetail(movieId), fetcher);
   if (error) return <div>failed to load</div>;
   if (!data) return <Loading></Loading>;
