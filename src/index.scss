@@ -14,10 +14,11 @@
     margin: 0 auto;
   }
   .section-title{
-    @apply capitalize text-white mb-6 text-3xl font-bold;
+    @apply capitalize text-white mb-6 text-3xl font-bold hover:text-primary duration-300 hover:tracking-[1px] ;
     &-primary{
-      @apply text-primary capitalize  mb-6 text-3xl font-bold
+      @apply capitalize  mb-6 text-3xl font-bold text-primary
     }
+
   }
   .page-container-fluid {
     max-width: 1440px;

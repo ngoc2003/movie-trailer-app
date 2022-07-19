@@ -7,12 +7,11 @@ import useDebounce from "../hooks/useDebounce";
 import ReactPaginate from "react-paginate";
 import "swiper/css";
 import Searching from "../components/Searching";
-
 const itemsPerPage = 20;
-const MoviePage = () => {
+const MoviePage = ({ type, mediaType }) => {
   const [filter, setFilter] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const [url, setUrl] = useState(API.getMovieList("popular", pageNumber));
+  const [url, setUrl] = useState(API.getMovieList(type, pageNumber, mediaType));
   const { data, error } = useSWR(url, fetcher);
   const filterDebounce = useDebounce(filter, 500);
   const loading = !data && !error;
@@ -24,9 +23,9 @@ const MoviePage = () => {
     if (filterDebounce) {
       setUrl(API.getMovieSearch(filterDebounce));
     } else {
-      setUrl(API.getMovieList("popular", pageNumber));
+      setUrl(API.getMovieList(type, pageNumber, mediaType));
     }
-  }, [filterDebounce, pageNumber]);
+  }, [filterDebounce, pageNumber, type, mediaType]);
 
   // Pagination
   const [pageCount, setPageCount] = useState(0);
@@ -53,7 +52,7 @@ const MoviePage = () => {
           <div className="grid grid-cols-3 gap-10">
             {movies.length > 0 &&
               movies.map((item) => (
-                <MovieCard key={item.id} item={item}></MovieCard>
+                <MovieCard key={item.id} item={item} mediaType={mediaType}></MovieCard>
               ))}
           </div>
         </>

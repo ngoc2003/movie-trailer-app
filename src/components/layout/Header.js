@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <header className="header flex items-center text-white gap-x-5 py-8 page-container">
       <NavLink
-        to="/series"
+        to="/tv"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
         TV Series
@@ -16,12 +16,12 @@ const Header = () => {
       >
         Movies
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/anime"
         className={({ isActive }) => (isActive ? "text-primary" : "")}
       >
         Anime
-      </NavLink>
+      </NavLink> */}
     </header>
   );
 };

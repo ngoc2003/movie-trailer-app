@@ -42,7 +42,7 @@ export const sidebar = [
       },
       {
         name: "Top rated",
-        path: "/toprated",
+        path: "/top_rated",
         icon: <AiFillStar></AiFillStar>,
       },
     ],
@@ -52,7 +52,7 @@ export const sidebar = [
     items: [
       {
         name: "TV Series",
-        path: "/series",
+        path: "/tv",
         icon: <RiMovie2Fill></RiMovie2Fill>,
       },
       {
@@ -60,11 +60,11 @@ export const sidebar = [
         path: "/movies",
         icon: <MdMovie></MdMovie>,
       },
-      {
-        name: "Anime",
-        path: "/anime",
-        icon: <RiSlideshow3Fill></RiSlideshow3Fill>,
-      },
+      // {
+      //   name: "Anime",
+      //   path: "/anime",
+      //   icon: <RiSlideshow3Fill></RiSlideshow3Fill>,
+      // },
     ],
   },
 ];

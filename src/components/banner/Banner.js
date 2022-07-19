@@ -7,7 +7,7 @@ import BannerItem from "./BannerItem";
 
 const Banner = () => {
   const { data, error } = useSWR(
-    API.getMovieList("upcoming"),
+    API.getMovieList("popular", 1, "movie"),
     fetcher
   );
   const movies = data?.results || [];

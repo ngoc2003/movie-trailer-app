@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { API } from "../../config";
 import Button from "../Button";
 
-const MovieCard = ({ item }) => {
+const MovieCard = ({ item, mediaType= 'movies' }) => {
+  mediaType = mediaType === 'movie'? 'movies' : mediaType
   const { title, vote_average, release_date, poster_path, id } = item;
   const navigate = useNavigate();
   return (
@@ -19,7 +20,7 @@ const MovieCard = ({ item }) => {
           <span>{new Date(release_date).getFullYear()}</span>
           <span>{vote_average}</span>
         </div>
-        <Button onClick={() => navigate(`/movies/${id}`)} fluid>
+        <Button onClick={() => navigate(`/${mediaType}/${id}`)} fluid>
           Watch Now
         </Button>
       </div>
