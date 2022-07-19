@@ -22,7 +22,7 @@ export function MovieVideo({media_type}) {
               </h2>
               <iframe
                 id={item.id}
-                className="w-full h-full object-fill"
+                className="w-full h-full object-fill min-h-[250px]"
                 src={API.getYoutubeVideo(item.key)}
                 title="YouTube video player"
                 frameBorder="0"

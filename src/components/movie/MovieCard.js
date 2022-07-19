@@ -21,7 +21,7 @@ const MovieCard = ({ item, mediaType = "movies" }) => {
   return (
     <div className="movie-card flex flex-col h-full text-white rounded-lg p-3 bg-slate-800 select-none">
       <img
-        className="w-full object-cover rounded-lg mb-5"
+        className="w-full object-cover rounded-lg mb-5 max-h-[600px]"
         src={API.getImageUrl(poster_path, "w500")}
         alt=""
       />

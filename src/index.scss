@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-$primary: #F62682;
+$primary: #f62682;
 
 @layer base {
   body {
@@ -11,8 +11,12 @@ $primary: #F62682;
 
 @layer components {
   .page-container {
-    max-width: 900px;
+    width: 100%;
+    padding: 0 50px;
     margin: 0 auto;
+    @media screen and(max-width:620px) {
+      padding: 0 20px;
+    }
   }
   .section-title {
     @apply capitalize text-white mb-6 text-3xl font-bold hover:text-primary duration-300;
@@ -27,10 +31,17 @@ $primary: #F62682;
   .movie-list .swiper-slide {
     height: auto;
   }
-
   .banner .swiper {
     height: 100%;
   }
+  .banner--flex-style {
+    @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row;
+  }
+}
+.text-4xl {
+  // @media screen and(max-width:620px) {
+  //   font-size:30px;
+  // }
 }
 
 @import "./assets/scss/loading";

@@ -3,10 +3,17 @@ import { NavLink } from "react-router-dom";
 import { AiFillSetting } from "react-icons/ai";
 import { IoLogOut } from "react-icons/io5";
 import { sidebar } from "../../base/sidebar";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
-const SideBar = () => {
+const SideBar = React.forwardRef((props, ref) => {
+  const { showNav } = props;
   return (
-    <div className="w-[18%] max-w-[300px] min-w-[250px] bg-[#181818] pt-8 px-4 overflow-auto">
+    <div
+      ref={ref}
+      className={`duration-500 w-[18%] max-w-[300px] min-w-[250px] h-full bg-[#181818] pt-8 px-4 overflow-auto absolute z-50 ${
+        !showNav && "-right-[100%]"
+      }`}
+    >
       <h1 className=" text-3xl font-bold pb-3">
         <span className="text-primary">TL</span> Movie{" "}
       </h1>
@@ -66,6 +73,6 @@ const SideBar = () => {
       </div> */}
     </div>
   );
-};
+});
 
 export default SideBar;

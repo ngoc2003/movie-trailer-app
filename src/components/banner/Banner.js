@@ -7,10 +7,7 @@ import BannerItem from "./BannerItem";
 
 const Banner = () => {
   SwiperCore.use([Autoplay]);
-  const { data } = useSWR(
-    API.getMovieList("popular", 1, "movie"),
-    fetcher
-  );
+  const { data } = useSWR(API.getMovieList("popular", 1, "movie"), fetcher);
   const movies = data?.results || [];
   return (
     <section className="banner h-[500px] page-container mb-20 overflow-hidden">
@@ -27,10 +24,6 @@ const Banner = () => {
               <BannerItem item={item}></BannerItem>
             </SwiperSlide>
           ))}
-        <div
-          class="swiper-pagination"
-          style={{ backgroundColor: "#fff" }}
-        ></div>
       </Swiper>
     </section>
   );

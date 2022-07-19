@@ -49,7 +49,7 @@ const MoviePage = ({ type, mediaType }) => {
         <Loading></Loading>
       ) : (
         <>
-          <div className="grid grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
             {movies.length > 0 &&
               movies.map((item) => (
                 <MovieCard
@@ -63,11 +63,11 @@ const MoviePage = ({ type, mediaType }) => {
       )}
       <ReactPaginate
         breakLabel="..."
-        nextLabel="next >"
+        nextLabel=""
         onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={2}
         pageCount={pageCount}
-        previousLabel="< previous"
+        previousLabel=""
         renderOnZeroPageCount={null}
         className="pagination"
       />

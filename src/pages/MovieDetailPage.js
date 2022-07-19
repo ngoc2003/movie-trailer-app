@@ -30,24 +30,24 @@ function MovieDetailPage() {
   } = data;
   return (
     <div className="page-container ">
-      <div className="h-[500px] relative mb-10">
-        <div className="absolute inset-0 bg-black bg-opacity-90"></div>
+      <div className="md:h-[500px] relative md:mb-10">
+        <div className="hidden md:block absolute inset-0 bg-black bg-opacity-90"></div>
         <div
-          className="w-full h-full bg-cover bg-no-repeat"
+          className="hidden md:block w-full h-full bg-cover bg-no-repeat"
           style={{
             backgroundImage: `url(${API.getImageUrl(backdrop_path)})`,
           }}
         ></div>
 
-        <div className="absolute flex top-0 left-0 h-full w-full px-8 items-center">
-          <div className=" h-[400px] shrink-0">
+        <div className="flex flex-col md:banner--flex-style ">
+          <div className="w-full md:w-auto md:h-[400px] shrink-0 ">
             <img
               src={API.getImageUrl(poster_path)}
               className="w-auto h-full pb-10 object-cover rounded-xl mx-auto"
               alt=""
             />
           </div>
-          <div className="px-6">
+          <div className="md:px-6">
             <h1 className="text-4xl font-bold text-primary">
               {title || name}
               <span className="opacity-80 text-xl px-2">
@@ -79,7 +79,7 @@ function MovieDetailPage() {
               </div>
             )}
             <h4 className="text-xl font-bold pb-2 text-primary">Overview</h4>
-            <p className=" text-sm leading-relaxed  mx-auto pb-10">
+            <p className=" text-sm leading-relaxed  mx-auto md:pb-10">
               {overview}
             </p>
           </div>

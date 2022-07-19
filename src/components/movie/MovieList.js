@@ -5,13 +5,25 @@ import "swiper/scss";
 import useSWR from "swr";
 import { fetcher, API } from "../../config";
 
-const MovieList = ({ type = "now_playing", mediaType = 'movies' }) => {
+const MovieList = ({ type = "now_playing", mediaType = "movies" }) => {
   const { data, error } = useSWR(API.getMovieList(type, 1, "movie"), fetcher);
   const movies = data?.results || [];
 
   return (
     <div className="movie-list">
-      <Swiper grapcursor="true" spaceBetween={40} slidesPerView={3}>
+      <Swiper
+        grapcursor="true"
+        spaceBetween={40}
+        slidesPerView={1}
+        breakpoints={{
+          620: {
+            slidesPerView: 2,
+          },
+          950: {
+            slidesPerView: 3,
+          },
+        }}
+      >
         {movies.length > 0 &&
           movies.map((item) => (
             <SwiperSlide key={item.id}>
