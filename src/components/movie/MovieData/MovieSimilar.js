@@ -4,10 +4,10 @@ import useSWR from "swr";
 import { API, fetcher } from "../../../config";
 import MovieCard from "../MovieCard";
 
-export function MovieSimilar() {
+export function MovieSimilar({media_type}) {
     const { movieId } = useParams();
     const { data, error } = useSWR(
-      API.getDetailMeta(movieId, "similar"),
+      API.getDetailMeta(movieId, "similar", media_type),
       fetcher
     );
     if (error) return <div>failed to load</div>;

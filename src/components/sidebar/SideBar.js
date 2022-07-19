@@ -13,16 +13,14 @@ const SideBar = () => {
       <div className="list-sidebar">
         {sidebar.map((group) => (
           <div className="pt-4" key={group.group}>
-            <p className="text-sm opacity-25 pb-2">{group.group}</p>
-            <div className="flex flex-col pl-4 gap-3 ">
+            <p className="text-sm opacity-25 pb-2 pl-1">{group.group}</p>
+            <div className="flex flex-col pl-1 gap-3 ">
               {group.items.map((item) => (
                 <NavLink
                   to={item.path}
                   key={item.name}
                   className={({ isActive }) =>
-                    isActive
-                      ? "text-primary flex gap-x-2 items-center"
-                      : "flex gap-x-2 items-center"
+                    isActive ? "active sidebar-item" : "sidebar-item"
                   }
                 >
                   <span className="text-xl">{item.icon}</span>
@@ -34,7 +32,8 @@ const SideBar = () => {
         ))}
       </div>
 
-      <div className="pt-4">
+      {/* PROFILE SETTING */}
+      {/* <div className="pt-4">
         <p className="text-sm opacity-25 pb-2">General</p>
         <div className="flex flex-col pl-4 gap-3 ">
           <NavLink
@@ -64,7 +63,7 @@ const SideBar = () => {
             Log out
           </NavLink>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

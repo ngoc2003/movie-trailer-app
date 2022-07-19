@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { API, fetcher } from "../config";
 import useSWR from "swr";
 import Loading from "../components/Loading";
@@ -9,7 +9,10 @@ import { MovieVideo } from "../components/movie/MovieData/MovieVideo";
 
 function MovieDetailPage() {
   const { movieId } = useParams();
-  const { data, error } = useSWR(API.getMovieDetail(movieId), fetcher);
+  const {state} = useLocation();
+  const media_type = state.media_type
+  const { data, error } = useSWR(API.getMovieDetail(movieId, media_type ), fetcher);
+
   if (error) return <div>failed to load</div>;
   if (!data) return <Loading></Loading>;
   const {
@@ -21,6 +24,9 @@ function MovieDetailPage() {
     release_date,
     vote_average,
     runtime,
+    name,
+    first_air_date,
+    number_of_episodes,
   } = data;
   return (
     <div className="page-container ">
@@ -43,19 +49,21 @@ function MovieDetailPage() {
           </div>
           <div className="px-6">
             <h1 className="text-4xl font-bold text-primary">
-              {title}
-              <span className="opacity-80 text-3xl px-2">
-                ({new Date(release_date).getFullYear()})
+              {title || name}
+              <span className="opacity-80 text-xl px-2">
+                ({new Date(release_date || first_air_date).getFullYear()})
               </span>
             </h1>
             <div className="mb-5">
               <span className="text-sm">
-                <span className="opacity-80">Average: </span>
+                <span className="opacity-50">Average: </span>
                 {vote_average}/10
               </span>
               <span className="text-sm pl-4">
-                <span className="opacity-80">Run time: </span>
-                {runtime}
+                <span className="opacity-50">
+                  {runtime ? "Run time: " : "Episodes: "}
+                </span>
+                {runtime || number_of_episodes}
               </span>
             </div>
             {genres?.length > 0 && (
@@ -77,9 +85,9 @@ function MovieDetailPage() {
           </div>
         </div>
       </div>
-      <MovieCredit></MovieCredit>
-      <MovieVideo></MovieVideo>
-      <MovieSimilar></MovieSimilar>
+      <MovieCredit media_type={media_type}></MovieCredit>
+      <MovieVideo media_type={media_type}></MovieVideo>
+      <MovieSimilar media_type={media_type}></MovieSimilar>
     </div>
   );
 }

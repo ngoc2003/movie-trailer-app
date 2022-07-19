@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+$primary: #F62682;
 
 @layer base {
   body {
@@ -13,12 +14,11 @@
     max-width: 900px;
     margin: 0 auto;
   }
-  .section-title{
-    @apply capitalize text-white mb-6 text-3xl font-bold hover:text-primary duration-300 ;
-    &-primary{
-      @apply capitalize  mb-6 text-3xl font-bold text-primary
+  .section-title {
+    @apply capitalize text-white mb-6 text-3xl font-bold hover:text-primary duration-300;
+    &-primary {
+      @apply capitalize  mb-6 text-3xl font-bold text-primary;
     }
-
   }
   .page-container-fluid {
     max-width: 1440px;
@@ -36,3 +36,5 @@
 @import "./assets/scss/loading";
 
 @import "./assets/scss/pagination";
+
+@import "./assets/scss/sidebar";

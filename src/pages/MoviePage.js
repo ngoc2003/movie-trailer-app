@@ -52,7 +52,11 @@ const MoviePage = ({ type, mediaType }) => {
           <div className="grid grid-cols-3 gap-10">
             {movies.length > 0 &&
               movies.map((item) => (
-                <MovieCard key={item.id} item={item} mediaType={mediaType}></MovieCard>
+                <MovieCard
+                  key={item.id}
+                  item={item}
+                  mediaType={mediaType}
+                ></MovieCard>
               ))}
           </div>
         </>

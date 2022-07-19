@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { API, fetcher } from "../../../config";
 
-export function MovieVideo() {
+export function MovieVideo({media_type}) {
     const { movieId } = useParams();
-    const { data, error } = useSWR(API.getDetailMeta(movieId, "videos"), fetcher);
+    const { data, error } = useSWR(API.getDetailMeta(movieId, "videos", media_type), fetcher);
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
   

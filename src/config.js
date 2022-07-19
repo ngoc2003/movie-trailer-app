@@ -9,18 +9,18 @@ export const API = {
   getMovieSearch: (query) =>
     `${API_domain}/search/movie?api_key=${apiKey}&query=${query}`,
   getMovieList: (type, page = 1, media_type = "all") => {
-    return type === "popular" || type === "top_rated" ||type==="now_playing"
+    return type === "popular" || type === "top_rated" || type === "now_playing"
       ? `${API_domain}/${media_type}/${type}?api_key=${apiKey}&page=${page}`
       : type === "discover"
       ? ` ${API_domain}/${type}/${media_type}?api_key=${apiKey}&page=${page}`
       : ` ${API_domain}/${type}/${media_type}/day?api_key=${apiKey}&page=${page}`;
   },
 
-  getMovieDetail: (movieId, media_type='movie') =>
+  getMovieDetail: (movieId, media_type = "movie") =>
     `${API_domain}/${media_type}/${movieId}?api_key=${apiKey}`,
   getImageUrl: (backdrop_path, size = "original") =>
     `https://image.tmdb.org/t/p/${size}/${backdrop_path}`,
-  getDetailMeta: (movieId, meta) =>
-    `${API_domain}/movie/${movieId}/${meta}?api_key=${apiKey}`,
+  getDetailMeta: (movieId, meta, media_type='movie') =>
+    `${API_domain}/${media_type}/${movieId}/${meta}?api_key=${apiKey}`,
   getYoutubeVideo: (path) => `https://www.youtube.com/embed/${path}`,
 };

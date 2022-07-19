@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import CommingSoon from "./components/CommingSoon";
 import Loading from "./components/Loading";
 import "swiper/scss";
@@ -13,6 +13,8 @@ function App() {
   return (
     <Suspense fallback={<></>}>
       <Loading>
+      {/* <BrowserRouter> */}
+
         <Routes>
           <Route element={<Main></Main>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -34,13 +36,14 @@ function App() {
               element={<CommingSoon></CommingSoon>}
             ></Route>
             <Route path="/recent" element={<CommingSoon></CommingSoon>}></Route>
-            <Route
+            {/* <Route
               path="/setting"
               element={<CommingSoon></CommingSoon>}
             ></Route>
-            <Route path="/log" element={<CommingSoon></CommingSoon>}></Route>
+            <Route path="/log" element={<CommingSoon></CommingSoon>}></Route> */}
           </Route>
         </Routes>
+      {/* </BrowserRouter> */}
       </Loading>
     </Suspense>
   );
