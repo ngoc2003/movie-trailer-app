@@ -1,24 +1,18 @@
-import React, { useEffect, useRef, useState } from "react";
-// import MovieList from "../components/movie/MovieList";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import Loading from "../components/Loading";
 import MovieCard from "../components/movie/MovieCard";
-import { fetcher } from "../config";
+import { API, fetcher } from "../config";
 import useDebounce from "../hooks/useDebounce";
 import ReactPaginate from "react-paginate";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
 import Searching from "../components/Searching";
 
 const itemsPerPage = 20;
 const MoviePage = () => {
   const [filter, setFilter] = useState("");
   const [pageNumber, setPageNumber] = useState(1);
-  const [url, setUrl] = useState(
-    `https://api.themoviedb.org/3/movie/popular?api_key=1a763884400befdbd957d043e8e9e19c&page=${pageNumber}`
-  );
+  const [url, setUrl] = useState(API.getMovieList("popular", pageNumber));
   const { data, error } = useSWR(url, fetcher);
   const filterDebounce = useDebounce(filter, 500);
   const loading = !data && !error;
@@ -28,13 +22,9 @@ const MoviePage = () => {
 
   useEffect(() => {
     if (filterDebounce) {
-      setUrl(
-        `https://api.themoviedb.org/3/search/movie?api_key=1a763884400befdbd957d043e8e9e19c&query=${filterDebounce}`
-      );
+      setUrl(API.getMovieSearch(filterDebounce));
     } else {
-      setUrl(
-        `https://api.themoviedb.org/3/movie/popular?api_key=1a763884400befdbd957d043e8e9e19c&page=${pageNumber}`
-      );
+      setUrl(API.getMovieList("popular", pageNumber));
     }
   }, [filterDebounce, pageNumber]);
 
@@ -68,16 +58,16 @@ const MoviePage = () => {
           </div>
         </>
       )}
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="next >"
-          onPageChange={handlePageClick}
-          pageRangeDisplayed={3}
-          pageCount={pageCount}
-          previousLabel="< previous"
-          renderOnZeroPageCount={null}
-          className="pagination"
-        />
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+        className="pagination"
+      />
     </div>
   );
 };

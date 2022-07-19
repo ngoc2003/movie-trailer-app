@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router-dom";
-// import useSWR from "swr";
 import { API, fetcher } from "../config";
 import useSWR from "swr";
-import { SwiperSlide, Swiper } from "swiper/react";
-import MovieCard from "../components/movie/MovieCard";
 import Loading from "../components/Loading";
+import { MovieSimilar } from "../components/movie/MovieData/MovieSimilar";
+import { MovieCredit } from "../components/movie/MovieData/MovieCredit";
+import { MovieVideo } from "../components/movie/MovieData/MovieVideo";
 
 function MovieDetailPage() {
   const { movieId } = useParams();
@@ -77,7 +77,6 @@ function MovieDetailPage() {
           </div>
         </div>
       </div>
-
       <MovieCredit></MovieCredit>
       <MovieVideo></MovieVideo>
       <MovieSimilar></MovieSimilar>
@@ -85,96 +84,4 @@ function MovieDetailPage() {
   );
 }
 
-function MovieCredit() {
-  const { movieId } = useParams();
-  const { data, error } = useSWR(
-    API.getDetailMeta(movieId, "credits"),
-    fetcher
-  );
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-  const { cast } = data;
-  return (
-    <div className="py-10">
-      <h2 className="section-title-primary">
-        Series Cast
-      </h2>
-      <Swiper grapcursor="true" spaceBetween={40} slidesPerView={5}>
-        {cast?.map((item) => (
-          <SwiperSlide key={item.id}>
-            <div className="cast-item">
-              <img
-                src={API.getImageUrl(item.profile_path)}
-                alt=""
-                className="w-full object-cover rounded-lg"
-              />
-            </div>
-            <h3 className="text-xl">{item.name}</h3>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
-  );
-}
-
-function MovieVideo() {
-  const { movieId } = useParams();
-  const { data, error } = useSWR(API.getDetailMeta(movieId, "videos"), fetcher);
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-
-  const { results } = data;
-  return (
-    <>
-      {results
-        ?.filter((item) => {
-          return item.type === "Trailer" && item;
-        })
-        ?.map((item) => (
-          <div key={item.id} className="w-full aspect-video py-10">
-            <h2 className="section-title-primary">
-              {item.name}
-            </h2>
-            <iframe
-              id={item.id}
-              className="w-full h-full object-fill"
-              src={API.getYoutubeVideo(item.key)}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        ))}
-    </>
-  );
-}
-
-function MovieSimilar() {
-  const { movieId } = useParams();
-  const { data, error } = useSWR(
-    API.getDetailMeta(movieId, "similar"),
-    fetcher
-  );
-  if (error) return <div>failed to load</div>;
-  if (!data) return <div>loading...</div>;
-  const { results } = data;
-
-  return (
-    <div className="py-10">
-      <h2 className="section-title-primary">
-        Similar Movies
-      </h2>
-      <div className="movie-list">
-        <Swiper grapcursor="true" spaceBetween={40} slidesPerView={3}>
-          {results?.map((item) => (
-            <SwiperSlide key={item.id}>
-              <MovieCard item={item}></MovieCard>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
-    </div>
-  );
-}
 export default MovieDetailPage;
