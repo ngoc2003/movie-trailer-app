@@ -2,12 +2,12 @@ import React from "react";
 import { API, fetcher } from "../../config";
 import useSWR from "swr";
 import { SwiperSlide, Swiper } from "swiper/react";
-import SwiperCore, { Autoplay, Pagination, Navigation } from "swiper";
+import SwiperCore, { Autoplay } from "swiper";
 import BannerItem from "./BannerItem";
 
 const Banner = () => {
   SwiperCore.use([Autoplay]);
-  const { data, error } = useSWR(
+  const { data } = useSWR(
     API.getMovieList("popular", 1, "movie"),
     fetcher
   );
