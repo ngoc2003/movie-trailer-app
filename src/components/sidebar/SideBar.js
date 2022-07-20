@@ -10,7 +10,7 @@ const SideBar = React.forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className={`navbar absolute -traslate-x-0 md:relative left:0 w-[18%] max-w-[300px] min-w-[250px] h-full bg-[#181818] pt-8 px-4 overflow-auto  z-50 ${
+      className={`sidebar overflow-y-auto absolute -traslate-x-0 md:relative left:0 w-[18%] max-w-[300px] min-w-[250px] h-full bg-[#181818] pt-8 px-4 overflow-auto  z-50 ${
         !showNav && "-translate-x-[100%] opacity-0"
       }`}
     >

@@ -8,7 +8,14 @@ $primary: #f62682;
     @apply bg-slate-900 font-body text-white;
   }
 }
-
+.main{
+  &::-webkit-scrollbar{
+    width:4px;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: $primary;
+  }
+}
 @layer components {
   .page-container {
     width: 100%;
@@ -37,8 +44,14 @@ $primary: #f62682;
   .banner--flex-style {
     @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row max-h-full ;
   }
-  .navbar {
+  .sidebar {
     transition: 0.3s linear !important;
+    &::-webkit-scrollbar{
+      width:0;
+    }
+    &::-webkit-scrollbar-thumb{
+      background-color: transparent;
+    }
   }
 }
 

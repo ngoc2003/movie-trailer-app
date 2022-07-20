@@ -28,7 +28,7 @@ const Main = () => {
   return (
     <div className="flex h-screen overflow-hidden relative">
       <SideBar showNav={showNav} ref={navRef}></SideBar>
-      <div className="flex-1 overflow-y-scroll">
+      <div className="main flex-1 overflow-y-scroll">
         <Header setShowNav={setShowNav}></Header>
         <Outlet></Outlet>
       </div>
