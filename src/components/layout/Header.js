@@ -4,7 +4,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 import { FaBars } from "react-icons/fa";
 
 const Header = ({ setShowNav }) => {
-  const hideBars = useMediaQuery("(max-width: 920px)");
+  const hideBars = useMediaQuery("(max-width: 950px)");
   return (
     <header className="header flex items-center text-white py-8 page-container relative">
       <span className="absolute" onClick={() => setShowNav(true)}>

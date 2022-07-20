@@ -7,7 +7,7 @@ import useMediaQuery from "../../hooks/useMediaQuery";
 const Main = () => {
   const [showNav, setShowNav] = useState(false);
   const navRef = useRef();
-  const isDesktop = useMediaQuery("(min-width:920px)");
+  const isDesktop = useMediaQuery("(min-width:950px)");
 
   useEffect(() => {
     if (isDesktop) {

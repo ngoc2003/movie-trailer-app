@@ -35,7 +35,7 @@ $primary: #f62682;
     height: 100%;
   }
   .banner--flex-style {
-    @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row;
+    @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row max-h-full ;
   }
   .navbar {
     transition: 0.3s linear !important;
