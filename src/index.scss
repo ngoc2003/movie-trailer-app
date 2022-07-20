@@ -37,8 +37,8 @@ $primary: #f62682;
   .banner--flex-style {
     @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row;
   }
-  .navbar{
-    transition: .3s linear !important
+  .navbar {
+    transition: 0.3s linear !important;
   }
 }
 
@@ -47,3 +47,5 @@ $primary: #f62682;
 @import "./assets/scss/pagination";
 
 @import "./assets/scss/sidebar";
+
+@import "./assets/scss/fb";
