@@ -2,24 +2,32 @@ import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const Main = () => {
   const [showNav, setShowNav] = useState(false);
   const navRef = useRef();
+  const isDesktop = useMediaQuery("(min-width:920px)");
+
   useEffect(() => {
-    function handleClickOut(e) {
-      if (e.target.nodeName !== 'svg' && !navRef.current.contains(e.target) ) {
-        setShowNav(false);
+    if (isDesktop) {
+      setShowNav(true);
+    } else {
+      setShowNav(false)
+      function handleClickOut(e) {
+        if (e.target.nodeName !== "svg" && !navRef.current.contains(e.target)) {
+          setShowNav(false);
+        }
       }
+      document.addEventListener("click", handleClickOut);
+      return () => {
+        document.removeEventListener("click", handleClickOut);
+      };
     }
-    document.addEventListener("click", handleClickOut);
-    return () => {
-      document.removeEventListener("click", handleClickOut);
-    };
-  }, []);
+  }, [isDesktop]);
   return (
     <div className="flex h-screen overflow-hidden relative">
-      <SideBar showNav={showNav} setShowNav={setShowNav} ref={navRef}></SideBar>
+      <SideBar showNav={showNav} ref={navRef}></SideBar>
       <div className="flex-1 overflow-y-scroll">
         <Header setShowNav={setShowNav}></Header>
         <Outlet></Outlet>

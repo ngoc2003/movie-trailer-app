@@ -22,6 +22,9 @@ const MovieList = ({ type = "now_playing", mediaType = "movies" }) => {
           950: {
             slidesPerView: 3,
           },
+          1440: {
+            slidesPerView: 4,
+          }
         }}
       >
         {movies.length > 0 &&

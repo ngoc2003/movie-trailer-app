@@ -15,7 +15,7 @@ const Banner = () => {
         grabCursor="true"
         slidesPerView={1}
         autoplay={{
-          delay: 3500,
+          delay: 8000,
         }}
       >
         {movies.length > 0 &&

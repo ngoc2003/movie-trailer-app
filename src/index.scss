@@ -37,11 +37,9 @@ $primary: #f62682;
   .banner--flex-style {
     @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row;
   }
-}
-.text-4xl {
-  // @media screen and(max-width:620px) {
-  //   font-size:30px;
-  // }
+  .navbar{
+    transition: .3s linear !important
+  }
 }
 
 @import "./assets/scss/loading";

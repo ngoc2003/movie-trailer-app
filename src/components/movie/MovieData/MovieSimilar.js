@@ -29,6 +29,9 @@ export function MovieSimilar({ media_type }) {
             950: {
               slidesPerView: 3,
             },
+            1440: {
+              slidesPerView: 4,
+            },
           }}
         >
           {results?.map((item) => (
