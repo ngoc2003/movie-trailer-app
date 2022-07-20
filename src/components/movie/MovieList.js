@@ -5,7 +5,7 @@ import "swiper/scss";
 import useSWR from "swr";
 import { fetcher, API } from "../../config";
 
-const MovieList = ({ type = "now_playing", mediaType = "movies" }) => {
+const MovieList = ({ type = "now_playing", mediaType = "movie" }) => {
   const { data, error } = useSWR(API.getMovieList(type, 1, "movie"), fetcher);
   const movies = data?.results || [];
 

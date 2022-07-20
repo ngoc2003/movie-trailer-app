@@ -1,9 +1,8 @@
 export const fetcher = (url) => fetch(url).then((res) => res.json());
+export const REACT_APP_URL = "https://tl-movie.vercel.app";
+export const REACT_APP_FACEBOOK_APP_ID = '3108322012762887'
 const apiKey = "1a763884400befdbd957d043e8e9e19c";
 const API_domain = `https://api.themoviedb.org/3`;
-
-// https://api.themoviedb.org/3/movie/top_rated?api_key=<<api_key>>&language=en-US&page=1
-// https://api.themoviedb.org/3/tv/popular?api_key=<<api_key>>&language=en-US&page=1
 
 export const API = {
   getMovieSearch: (query) =>
@@ -20,7 +19,7 @@ export const API = {
     `${API_domain}/${media_type}/${movieId}?api_key=${apiKey}`,
   getImageUrl: (backdrop_path, size = "original") =>
     `https://image.tmdb.org/t/p/${size}/${backdrop_path}`,
-  getDetailMeta: (movieId, meta, media_type='movie') =>
+  getDetailMeta: (movieId, meta, media_type = "movie") =>
     `${API_domain}/${media_type}/${movieId}/${meta}?api_key=${apiKey}`,
   getYoutubeVideo: (path) => `https://www.youtube.com/embed/${path}`,
 };

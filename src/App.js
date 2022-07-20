@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route element={<Main></Main>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
-            <Route exact path="/movies" element={<Movies></Movies>}></Route>
+            <Route exact path="/movie" element={<Movies></Movies>}></Route>
             <Route path="/discover" element={<Movies></Movies>}></Route>
             <Route path="/trending" element={<Movies></Movies>}></Route>
             <Route path="/top_rated" element={<Movies></Movies>}></Route>
@@ -26,7 +26,7 @@ function App() {
               element={<MovieDetailPage></MovieDetailPage>}
             ></Route>
             <Route
-              path="/movies/:movieId"
+              path="/movie/:movieId"
               element={<MovieDetailPage></MovieDetailPage>}
             ></Route>
             <Route

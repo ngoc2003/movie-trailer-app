@@ -25,7 +25,7 @@ const Header = ({ setShowNav }) => {
           TV Series
         </NavLink>
         <NavLink
-          to="/movies"
+          to="/movie"
           className={({ isActive }) =>
             isActive ? "text-primary font-semibold" : ""
           }

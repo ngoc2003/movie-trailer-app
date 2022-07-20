@@ -24,14 +24,14 @@ export default function BannerItem({ item }) {
         <div className="flex items-center flex-wrap mb-8">
           {genres?.map((genre) => (
             <div
-              className="inline-block py-1 px-3 mr-3 mb-2 rounded-md border border-white"
+              className="inline-block py-1 px-4 mr-3 mb-2 rounded-md border border-white"
               key={genre.id}
             >
               {genre.name}
             </div>
           ))}
         </div>
-        <Button onClick={() => navigate(`/movies/${id}`)} className="w-auto">
+        <Button onClick={() => navigate(`/movie/${id}`)} className="w-auto">
           Watch Now
         </Button>
       </div>

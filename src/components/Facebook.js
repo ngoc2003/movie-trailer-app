@@ -1,24 +1,12 @@
-// export const Comments = () => {
-//   return (
-//     <>
-//       <div
-//         className="fb-comments"
-//         data-href={"https://tl-movie.vercel.app/"}
-//         data-width="100%"
-//         data-numposts="5"
-//       ></div>
-//     </>
-//   );
-// }
-import React, { Component} from 'react';
+import React from 'react';
 import { FacebookProvider, Comments } from 'react-facebook';
+import { REACT_APP_FACEBOOK_APP_ID } from '../config';
 
-export default class CommentsFb extends Component {
-  render() {
+export default function CommentsFb ({url}) {
     return (
-      <FacebookProvider appId="3108322012762887">
-        <Comments colorscheme='dark' width={'100%'} href="https://tl-movie.vercel.app/" />
+      <FacebookProvider appId={REACT_APP_FACEBOOK_APP_ID}>
+        <Comments width={'100%'} href={url}/>
       </FacebookProvider>
     );
-  }
+  
 }

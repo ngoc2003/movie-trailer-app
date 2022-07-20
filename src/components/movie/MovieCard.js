@@ -3,11 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { API } from "../../config";
 import Button from "../Button";
 
-const MovieCard = ({ item, mediaType = "movies" }) => {
+const MovieCard = ({ item, mediaType = "movie" }) => {
   const stateTransfer = {
     media_type: mediaType,
   };
-  mediaType = mediaType === "movie" ? "movies" : mediaType;
   const {
     title,
     vote_average,

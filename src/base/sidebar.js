@@ -57,7 +57,7 @@ export const sidebar = [
       },
       {
         name: "Movies",
-        path: "/movies",
+        path: "/movie",
         icon: <MdMovie></MdMovie>,
       },
       // {

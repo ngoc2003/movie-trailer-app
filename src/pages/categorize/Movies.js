@@ -3,7 +3,7 @@ import MoviePage from "../MoviePage";
 
 const Movies = () => {
   const pathname = window.location.pathname.slice(1);
-  const type = pathname === "movies" ? "popular" : pathname;
+  const type = pathname === "movie" ? "popular" : pathname;
 
   return (
     <div>

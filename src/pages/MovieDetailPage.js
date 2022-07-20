@@ -1,18 +1,17 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { API, fetcher } from "../config";
+import { API, fetcher, REACT_APP_URL } from "../config";
 import useSWR from "swr";
 import Loading from "../components/Loading";
 import { MovieSimilar } from "../components/movie/MovieData/MovieSimilar";
 import { MovieCredit } from "../components/movie/MovieData/MovieCredit";
 import { MovieVideo } from "../components/movie/MovieData/MovieVideo";
 import CommentsFb from "../components/Facebook";
-// import { CommentsFb } from "../components/Facebook";
 
 function MovieDetailPage() {
   const { movieId } = useParams();
   const { state } = useLocation();
-  const media_type = state.media_type;
+  const media_type = state?.media_type;
   const { data, error } = useSWR(
     API.getMovieDetail(movieId, media_type),
     fetcher
@@ -20,6 +19,7 @@ function MovieDetailPage() {
 
   if (error) return <div>failed to load</div>;
   if (!data) return <Loading></Loading>;
+
   const {
     backdrop_path,
     poster_path,
@@ -33,6 +33,8 @@ function MovieDetailPage() {
     first_air_date,
     number_of_episodes,
   } = data;
+  const url = `${REACT_APP_URL}/${media_type}/${movieId}`;
+  console.log(url)
   return (
     <div className="page-container ">
       <div className="md:h-[500px] relative md:mb-10">
@@ -93,15 +95,7 @@ function MovieDetailPage() {
       <MovieCredit media_type={media_type}></MovieCredit>
       <MovieVideo media_type={media_type}></MovieVideo>
       <MovieSimilar media_type={media_type}></MovieSimilar>
-      {/* <div>
-        <div
-          className="fb-comments"
-          data-href="https://tl-movie.vercel.app/"
-          data-width="100%"
-          data-numposts="5"
-        ></div>
-      </div> */}
-      <CommentsFb></CommentsFb>
+      <CommentsFb url={url}></CommentsFb>
     </div>
   );
 }
