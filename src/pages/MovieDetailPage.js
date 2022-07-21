@@ -36,7 +36,7 @@ function MovieDetailPage() {
   const url = `${REACT_APP_URL}/${media_type}/${movieId}`;
   console.log(url)
   return (
-    <div className="page-container ">
+    <div className="page-container">
       <div className="md:h-[500px] relative md:mb-10">
         <div className="hidden md:block absolute inset-0 bg-black bg-opacity-90"></div>
         <div
@@ -96,6 +96,7 @@ function MovieDetailPage() {
       <MovieVideo media_type={media_type}></MovieVideo>
       <MovieSimilar media_type={media_type}></MovieSimilar>
       <CommentsFb url={url}></CommentsFb>
+      
     </div>
   );
 }

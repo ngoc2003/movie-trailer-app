@@ -3,6 +3,7 @@ import Header from "./Header";
 import { Outlet } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
 import useMediaQuery from "../../hooks/useMediaQuery";
+import Copyright from "../Copyright";
 
 const Main = () => {
   const [showNav, setShowNav] = useState(false);
@@ -31,6 +32,7 @@ const Main = () => {
       <div className="main flex-1 overflow-y-scroll">
         <Header setShowNav={setShowNav}></Header>
         <Outlet></Outlet>
+        <Copyright></Copyright>
       </div>
     </div>
   );
