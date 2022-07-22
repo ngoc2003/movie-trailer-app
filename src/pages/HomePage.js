@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <>
       <Banner></Banner>
-      <section className="movies-layout page-container ">
+      <section className="movies-layout page-container pb-20">
         <NavLink to="/discover">
           <h2 className="section-title">Discover</h2>
         </NavLink>
@@ -18,7 +18,7 @@ const HomePage = () => {
         </NavLink>
         <MovieList type="top_rated"></MovieList>
       </section>
-      <section className="movies-layout page-container ">
+      <section className="movies-layout page-container">
         <NavLink to="/discover">
           <h2 className="section-title">Trending</h2>
         </NavLink>
