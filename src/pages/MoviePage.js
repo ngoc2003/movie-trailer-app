@@ -54,7 +54,7 @@ const MoviePage = ({ type, mediaType }) => {
               movies.map((item) => (
                 <MovieCard
                   key={item.id}
-                  item={item}
+                  id={item.id}
                   mediaType={mediaType}
                 ></MovieCard>
               ))}
