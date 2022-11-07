@@ -31,9 +31,9 @@ const SignUpPage = () => {
         pauseOnHover: false,
         autoClose: 2000,
       });
-    //   setTimeout(() => {
-    //     navigate("/sign-in");
-    //   }, 2000);
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
     } catch (error) {
       console.error(error);
       toast.error(
@@ -49,7 +49,7 @@ const SignUpPage = () => {
     <div className="text-center">
       <h4 className="mb-3 text-3xl font-semibold text-primary">Sign Up</h4>
       <p className="mb-3 text-sm">
-        Already have an account?{" "}
+        Already have an account? <br/>
         <a href="/sign-in" className="text-primary">
           Sign In
         </a>

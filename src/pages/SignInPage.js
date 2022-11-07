@@ -10,6 +10,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/auth-context";
+
 const SignInPage = () => {
   const { userInfo } = useAuth();
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const SignInPage = () => {
     <div className="text-center">
       <h4 className="mb-3 text-3xl font-semibold text-primary">Sign In</h4>
       <p className="mb-3 text-sm">
-        Dont have an account?{" "}
+        Dont have an account?<br />
         <a href="/sign-up" className="text-primary">
           Sign Up
         </a>

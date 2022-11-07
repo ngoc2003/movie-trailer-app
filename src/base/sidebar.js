@@ -72,15 +72,5 @@ export const sidebar = [
       // },
     ],
   },
-  {
-    group: "general",
-    items: [
-      {
-        name: "settings",
-        path: "/setting",
-        icon: <AiFillSetting></AiFillSetting>,
-      },
-      
-    ],
-  },
+  
 ];

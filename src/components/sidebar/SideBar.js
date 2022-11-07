@@ -9,6 +9,9 @@ import Button from "../Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import avatarDefault from "../../images/avatar_default.jpg";
+import {
+  AiFillSetting,
+} from "react-icons/ai";
 const SideBar = React.forwardRef((props, ref) => {
   const { showNav } = props;
   const navigate = useNavigate();
@@ -48,8 +51,10 @@ const SideBar = React.forwardRef((props, ref) => {
           </div>
         ))}
         {userInfo && (
-          <>
-            <NavLink
+          <div className="pt-4" >
+            <p className="pb-2 pl-1 text-sm opacity-25">General</p>
+            <div className="flex flex-col gap-3 pl-1 ">
+                <NavLink
               to={"/user"}
               className={({ isActive }) =>
                 isActive ? "active sidebar-item" : "sidebar-item"
@@ -62,7 +67,18 @@ const SideBar = React.forwardRef((props, ref) => {
               />
               <span>{userInfo.fullName || "Anonymous"}</span>
             </NavLink>
-          </>
+            <NavLink
+                  to={'/setting'}
+                  className={({ isActive }) =>
+                    isActive ? "active sidebar-item" : "sidebar-item"
+                  }
+                >
+                  <span className="text-xl"><AiFillSetting></AiFillSetting></span>
+                  Setting
+                </NavLink>
+            </div>
+          </div>
+
         )}
 
         <div className="flex flex-col gap-2 mt-5 mb-10">
@@ -72,7 +88,7 @@ const SideBar = React.forwardRef((props, ref) => {
                 Sign in
               </Button>
               <span className="text-sm text-center ">
-                Dont have an account?{" "}
+                Dont have an account?<br />
                 <a href="/sign-up" className="text-primary">
                   Sign up
                 </a>
