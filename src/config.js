@@ -5,6 +5,7 @@ const apiKey = "1a763884400befdbd957d043e8e9e19c";
 const API_domain = `https://api.themoviedb.org/3`;
 
 export const API = {
+  getMoviebyID: id => `${API_domain}/movie/${id}?api_key=${apiKey}`,
   getMovieSearch: (query) =>
     `${API_domain}/search/movie?api_key=${apiKey}&query=${query}`,
   getMovieList: (type, page = 1, media_type = "all") => {

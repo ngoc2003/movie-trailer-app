@@ -12,6 +12,7 @@ const Main = lazy(() => import("./components/layout/Main"));
 const Movies = lazy(() => import("./pages/categorize/Movies"));
 const TvSeries = lazy(() => import("./pages/categorize/TvSeries"));
 const MovieDetailPage = lazy(() => import("./pages/MovieDetailPage"));
+const UserPage = lazy(() => import("./pages/UserPage"));
 //Authen
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
@@ -22,7 +23,6 @@ function App() {
     <AuthProvider>
       <Suspense fallback={<></>}>
         <ScrollToTop>
-          <Loading>
             <Routes>
               <Route element={<Main></Main>}>
                 <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -39,14 +39,8 @@ function App() {
                   path="/movie/:movieId"
                   element={<MovieDetailPage></MovieDetailPage>}
                 ></Route>
-                <Route
-                  path="/community"
-                  element={<CommingSoon></CommingSoon>}
-                ></Route>
-                <Route
-                  path="/recent"
-                  element={<CommingSoon></CommingSoon>}
-                ></Route>
+                <Route path="/user" element={<UserPage />}></Route>
+                <Route path="*" element={<CommingSoon></CommingSoon>}></Route>
               </Route>
               <Route element={<LayoutAuthen />}>
                 <Route
@@ -59,7 +53,6 @@ function App() {
                 ></Route>
               </Route>
             </Routes>
-          </Loading>
         </ScrollToTop>
       </Suspense>
     </AuthProvider>

@@ -94,7 +94,7 @@ function MovieDetailPage() {
       <MovieCredit media_type={media_type}></MovieCredit>
       <MovieVideo media_type={media_type}></MovieVideo>
       <MovieSimilar media_type={media_type}></MovieSimilar>
-      <CommentsFb url={url}></CommentsFb>
+      {/* <CommentsFb url={url}></CommentsFb> */}
       
     </div>
   );

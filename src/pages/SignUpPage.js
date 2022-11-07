@@ -6,7 +6,7 @@ import Input from "../components/Input";
 import Label from "../components/Label";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db } from "../firebase/firebase.config";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 const SignUpPage = () => {
@@ -26,6 +26,8 @@ const SignUpPage = () => {
         fullName: values.fullName,
         email: values.email,
         password: values.password,
+        createdAt: serverTimestamp(),
+        
       });
       toast.success("Create account successfully", {
         pauseOnHover: false,

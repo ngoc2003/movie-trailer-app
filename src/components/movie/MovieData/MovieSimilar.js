@@ -36,7 +36,7 @@ export function MovieSimilar({ media_type }) {
         >
           {results?.map((item) => (
             <SwiperSlide key={item.id}>
-              <MovieCard item={item}></MovieCard>
+              <MovieCard id={item.id}></MovieCard>
             </SwiperSlide>
           ))}
         </Swiper>
