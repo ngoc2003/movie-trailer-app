@@ -1,12 +1,22 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { BiLogOut } from "react-icons/bi";
 // import { AiFillSetting } from "react-icons/ai";
 // import { IoLogOut } from "react-icons/io5";
 import { sidebar } from "../../base/sidebar";
-
+import { useAuth } from "../../context/auth-context";
+import Button from "../Button";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/firebase.config";
+import avatarDefault from "../../images/avatar_default.jpg";
 const SideBar = React.forwardRef((props, ref) => {
   const { showNav } = props;
-
+  const navigate = useNavigate();
+  const { userInfo } = useAuth();
+  const handleLogout = () => {
+    signOut(auth);
+    window.location.reload();
+  };
   return (
     <div
       ref={ref}
@@ -14,14 +24,14 @@ const SideBar = React.forwardRef((props, ref) => {
         !showNav && "-translate-x-[100%] opacity-0"
       }`}
     >
-      <h1 className=" text-3xl font-bold pb-3">
+      <h1 className="pb-3 text-3xl font-bold ">
         <span className="text-primary">TL</span> Movie{" "}
       </h1>
-      <div className="list-sidebar">
+      <div className="capitalize list-sidebar">
         {sidebar.map((group) => (
           <div className="pt-4" key={group.group}>
-            <p className="text-sm opacity-25 pb-2 pl-1">{group.group}</p>
-            <div className="flex flex-col pl-1 gap-3 ">
+            <p className="pb-2 pl-1 text-sm opacity-25">{group.group}</p>
+            <div className="flex flex-col gap-3 pl-1 ">
               {group.items.map((item) => (
                 <NavLink
                   to={item.path}
@@ -37,40 +47,44 @@ const SideBar = React.forwardRef((props, ref) => {
             </div>
           </div>
         ))}
-      </div>
+        {userInfo && (
+          <>
+            <NavLink
+              to={"/user"}
+              className={({ isActive }) =>
+                isActive ? "active sidebar-item" : "sidebar-item"
+              }
+            >
+              <img
+                src={avatarDefault}
+                alt=""
+                className="object-cover w-6 h-6 rounded-full"
+              />
+              <span>{userInfo.fullName || "Anonymous"}</span>
+            </NavLink>
+          </>
+        )}
 
-      {/* PROFILE SETTING */}
-      {/* <div className="pt-4">
-        <p className="text-sm opacity-25 pb-2">General</p>
-        <div className="flex flex-col pl-4 gap-3 ">
-          <NavLink
-            to="/setting"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary flex gap-x-2 items-center"
-                : "flex gap-x-2 items-center"
-            }
-          >
-            <span className="text-xl">
-              <AiFillSetting></AiFillSetting>
-            </span>
-            Setting
-          </NavLink>
-          <NavLink
-            to="/log"
-            className={({ isActive }) =>
-              isActive
-                ? "text-primary flex gap-x-2 items-center"
-                : "flex gap-x-2 items-center"
-            }
-          >
-            <span className="text-xl">
-              <IoLogOut></IoLogOut>
-            </span>
-            Log out
-          </NavLink>
+        <div className="flex flex-col gap-2 mt-5 mb-10">
+          {!userInfo ? (
+            <>
+              <Button fluid to="/sign-in">
+                Sign in
+              </Button>
+              <span className="text-sm text-center ">
+                Dont have an account?{" "}
+                <a href="/sign-up" className="text-primary">
+                  Sign up
+                </a>
+              </span>
+            </>
+          ) : (
+            <Button fluid onClick={handleLogout}>
+              <BiLogOut></BiLogOut>Log out
+            </Button>
+          )}
         </div>
-      </div> */}
+      </div>
     </div>
   );
 });

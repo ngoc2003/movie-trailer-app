@@ -34,13 +34,12 @@ function MovieDetailPage() {
     number_of_episodes,
   } = data;
   const url = `${REACT_APP_URL}/${media_type}/${movieId}`;
-  console.log(url)
   return (
     <div className="page-container">
       <div className="md:h-[500px] relative md:mb-10">
-        <div className="hidden md:block absolute inset-0 bg-black bg-opacity-90"></div>
+        <div className="absolute inset-0 hidden bg-black md:block bg-opacity-90"></div>
         <div
-          className="hidden md:block w-full h-full bg-cover bg-no-repeat"
+          className="hidden w-full h-full bg-no-repeat bg-cover md:block"
           style={{
             backgroundImage: `url(${API.getImageUrl(backdrop_path)})`,
           }}
@@ -50,14 +49,14 @@ function MovieDetailPage() {
           <div className="w-full md:w-auto md:h-[400px] shrink-0 ">
             <img
               src={API.getImageUrl(poster_path)}
-              className="w-auto h-full pb-10 object-cover rounded-xl mx-auto"
+              className="object-cover w-auto h-full pb-10 mx-auto rounded-xl"
               alt=""
             />
           </div>
           <div className="md:px-6">
             <h1 className="text-4xl font-bold text-primary">
               {title || name}
-              <span className="opacity-80 text-xl px-2">
+              <span className="px-2 text-xl opacity-80">
                 ({new Date(release_date || first_air_date).getFullYear()})
               </span>
             </h1>
@@ -66,7 +65,7 @@ function MovieDetailPage() {
                 <span className="opacity-50">Average: </span>
                 {vote_average}/10
               </span>
-              <span className="text-sm pl-4">
+              <span className="pl-4 text-sm">
                 <span className="opacity-50">
                   {runtime ? "Run time: " : "Episodes: "}
                 </span>
@@ -74,10 +73,10 @@ function MovieDetailPage() {
               </span>
             </div>
             {genres?.length > 0 && (
-              <div className="flex items-center flex-wrap mb-5 gap-x-5 gap-y-3 ">
+              <div className="flex flex-wrap items-center mb-5 gap-x-5 gap-y-3 ">
                 {genres.map((item) => (
                   <span
-                    className="py-1 px-4 border border-white rounded"
+                    className="px-4 py-1 border border-white rounded"
                     key={item.id}
                   >
                     {item.name}
@@ -85,8 +84,8 @@ function MovieDetailPage() {
                 ))}
               </div>
             )}
-            <h4 className="text-xl font-bold pb-2 text-primary">Overview</h4>
-            <p className=" text-sm leading-relaxed  mx-auto md:pb-10">
+            <h4 className="pb-2 text-xl font-bold text-primary">Overview</h4>
+            <p className="mx-auto text-sm leading-relaxed md:pb-10">
               {overview}
             </p>
           </div>

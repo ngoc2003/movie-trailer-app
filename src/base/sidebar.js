@@ -1,4 +1,9 @@
-import { AiFillHome, AiFillClockCircle, AiFillStar } from "react-icons/ai";
+import {
+  AiFillHome,
+  AiFillClockCircle,
+  AiFillStar,
+  AiFillSetting,
+} from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
 import {
   RiCompassDiscoverFill,
@@ -65,6 +70,17 @@ export const sidebar = [
       //   path: "/anime",
       //   icon: <RiSlideshow3Fill></RiSlideshow3Fill>,
       // },
+    ],
+  },
+  {
+    group: "general",
+    items: [
+      {
+        name: "settings",
+        path: "/setting",
+        icon: <AiFillSetting></AiFillSetting>,
+      },
+      
     ],
   },
 ];

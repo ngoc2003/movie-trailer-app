@@ -1,0 +1,16 @@
+// success
+.Toastify__toast--success::before {
+  @apply bg-primary;
+}
+.Toastify__toast--success::after {
+  @apply bg-primary;
+}
+
+// error
+// .Toastify__toast--success::before {
+//     @apply bg-primary;
+//   }
+//   .Toastify__toast--success::after {
+//     @apply bg-primary;
+//   }
+  

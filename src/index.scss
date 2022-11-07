@@ -1,19 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-$primary: #f62682;
+// $primary: #f62682;
 
 @layer base {
   body {
     @apply bg-slate-900 font-body text-white;
   }
 }
-.main{
-  &::-webkit-scrollbar{
-    width:4px;
+.main {
+  &::-webkit-scrollbar {
+    width: 4px;
   }
-  &::-webkit-scrollbar-thumb{
-    background-color: $primary;
+  &::-webkit-scrollbar-thumb {
+    @apply bg-primary
   }
 }
 @layer components {
@@ -42,16 +42,19 @@ $primary: #f62682;
     height: 100%;
   }
   .banner--flex-style {
-    @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row max-h-full ;
+    @apply top-0 left-0 items-center h-full w-full px-8 absolute flex-row max-h-full;
   }
   .sidebar {
     transition: 0.3s linear !important;
-    &::-webkit-scrollbar{
-      width:0;
+    &::-webkit-scrollbar {
+      width: 0;
     }
-    &::-webkit-scrollbar-thumb{
+    &::-webkit-scrollbar-thumb {
       background-color: transparent;
     }
+  }
+  .input__error {
+    @apply text-xs text-red-500 text-left;
   }
 }
 
@@ -62,3 +65,5 @@ $primary: #f62682;
 @import "./assets/scss/sidebar";
 
 @import "./assets/scss/fb";
+
+@import "./assets/scss/toast";
