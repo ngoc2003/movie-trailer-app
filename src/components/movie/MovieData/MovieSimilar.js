@@ -4,10 +4,11 @@ import useSWR from "swr";
 import { API, fetcher } from "../../../config";
 import MovieCard from "../MovieCard";
 
-export function MovieSimilar({ media_type }) {
+export function MovieSimilar({ mediaType }) {
+  console.log(mediaType)
   const { movieId } = useParams();
   const { data, error } = useSWR(
-    API.getDetailMeta(movieId, "similar", media_type),
+    API.getDetailMeta(movieId, "similar", mediaType),
     fetcher
   );
   if (error) return <div>failed to load</div>;
@@ -36,7 +37,7 @@ export function MovieSimilar({ media_type }) {
         >
           {results?.map((item) => (
             <SwiperSlide key={item.id}>
-              <MovieCard id={item.id}></MovieCard>
+              <MovieCard item={item} mediaType={mediaType}></MovieCard>
             </SwiperSlide>
           ))}
         </Swiper>

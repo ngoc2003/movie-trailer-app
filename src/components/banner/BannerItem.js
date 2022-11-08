@@ -3,11 +3,14 @@ import useSWR from "swr";
 import { API, fetcher } from "../../config";
 import Button from "../Button";
 import Loading from "../Loading";
-import {updateFavorite} from '../../utils/updateFavorite'
+import { updateFavorite } from "../../utils/updateFavorite";
 import { useAuth } from "../../context/auth-context";
 import useGetUser from "../../hooks/useGetUser";
-export default function BannerItem({ item }) {
-  const user = useGetUser()
+import { useFavorite } from "../../hooks/useFavorite";
+import Heart from "../../utils/removeFavorite";
+export default function BannerItem({ item, mediaType }) {
+  const user = useGetUser();
+  const isFavorite = useFavorite(item?.id);
 
   const navigate = useNavigate();
   const { poster_path, title, id } = item;
@@ -42,7 +45,19 @@ export default function BannerItem({ item }) {
           <Button onClick={() => navigate(`/movie/${id}`)} className="w-auto">
             Watch Now
           </Button>
-          <Button outline onClick={(e) => updateFavorite(e, id, user.id)}>Add to favorite</Button>
+          {isFavorite ? (
+            <div className="flex items-center justify-center w-8 h-8 m-auto rounded-full bg-primary">
+
+            <Heart id={id} mediaType={mediaType}></Heart>
+            </div>
+          ) : (
+            <Button
+              outline
+              onClick={(e) => updateFavorite(e, id, mediaType, user)}
+            >
+              Add to favorite
+            </Button>
+          )}
         </div>
       </div>
     </div>

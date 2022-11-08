@@ -21,7 +21,7 @@ const Banner = () => {
         {movies.length > 0 &&
           movies.slice(0, 10).map((item) => (
             <SwiperSlide key={item.id}>
-              <BannerItem item={item}></BannerItem>
+              <BannerItem item={item} mediaType="movie"></BannerItem>
             </SwiperSlide>
           ))}
       </Swiper>

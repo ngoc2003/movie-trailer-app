@@ -3,10 +3,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import useSWR from "swr";
 import { API, fetcher } from "../../../config";
 
-export function MovieCredit({ media_type }) {
+export function MovieCredit({ mediaType }) {
   const { movieId } = useParams();
   const { data, error } = useSWR(
-    API.getDetailMeta(movieId, "credits", media_type),
+    API.getDetailMeta(movieId, "credits", mediaType),
     fetcher
   );
   if (error) return <div>failed to load</div>;

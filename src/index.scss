@@ -25,9 +25,9 @@
     }
   }
   .section-title {
-    @apply capitalize text-white mb-6 text-3xl font-bold hover:text-primary duration-300;
+    @apply capitalize text-white mb-6 text-2xl xs:text-3xl font-bold hover:text-primary duration-200;
     &-primary {
-      @apply capitalize  mb-6 text-3xl font-bold text-primary;
+      @apply capitalize  mb-6 text-2xl xs:text-3xl font-bold text-primary;
     }
   }
   .page-container-fluid {

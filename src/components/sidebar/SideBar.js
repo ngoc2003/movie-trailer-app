@@ -12,7 +12,6 @@ import avatarDefault from "../../images/avatar_default.jpg";
 import { AiFillSetting } from "react-icons/ai";
 const SideBar = React.forwardRef((props, ref) => {
   const { showNav } = props;
-  const navigate = useNavigate();
   const { userInfo } = useAuth();
   const handleLogout = () => {
     signOut(auth);

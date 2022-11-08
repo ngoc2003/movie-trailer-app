@@ -21,7 +21,7 @@ const useGetUser = () => {
     });
   },[userInfo]);
 
-  return user
+  return user ? user : ''
 };
 
 export default useGetUser;

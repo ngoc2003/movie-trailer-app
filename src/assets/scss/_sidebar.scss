@@ -1,7 +1,7 @@
 .sidebar-item {
-  @apply flex gap-x-2 items-center py-2.5 px-5 rounded-lg duration-300 relative;
+  @apply flex gap-x-2 items-center py-2.5 px-5 rounded-lg duration-200 relative;
   &::after {
-    @apply absolute top-0 bottom-0 -right-4 w-[1px] block duration-300 bg-primary;
+    @apply absolute top-0 bottom-0 -right-4 w-[1px] block duration-200 bg-primary;
     content: "";
     opacity: 0;
   }

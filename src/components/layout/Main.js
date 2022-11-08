@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Header from "./Header";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import SideBar from "../sidebar/SideBar";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import Copyright from "../Copyright";
@@ -9,12 +9,15 @@ const Main = () => {
   const [showNav, setShowNav] = useState(false);
   const navRef = useRef();
   const isDesktop = useMediaQuery("(min-width:950px)");
-
+  const location = useLocation();
+  useEffect(() => {
+    setShowNav(false);
+  }, [location]);
   useEffect(() => {
     if (isDesktop) {
       setShowNav(true);
     } else {
-      setShowNav(false)
+      setShowNav(false);
       function handleClickOut(e) {
         if (e.target.nodeName !== "svg" && !navRef.current.contains(e.target)) {
           setShowNav(false);
@@ -27,9 +30,9 @@ const Main = () => {
     }
   }, [isDesktop]);
   return (
-    <div className="flex h-screen overflow-hidden relative">
+    <div className="relative flex h-screen overflow-hidden">
       <SideBar showNav={showNav} ref={navRef}></SideBar>
-      <div className="main flex-1 overflow-y-scroll">
+      <div className="flex-1 overflow-y-scroll main">
         <Header setShowNav={setShowNav}></Header>
         <Outlet></Outlet>
         <Copyright></Copyright>

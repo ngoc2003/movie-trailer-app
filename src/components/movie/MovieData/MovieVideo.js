@@ -2,9 +2,9 @@ import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { API, fetcher } from "../../../config";
 
-export function MovieVideo({media_type}) {
+export function MovieVideo({mediaType}) {
     const { movieId } = useParams();
-    const { data, error } = useSWR(API.getDetailMeta(movieId, "videos", media_type), fetcher);
+    const { data, error } = useSWR(API.getDetailMeta(movieId, "videos", mediaType), fetcher);
     if (error) return <div>failed to load</div>;
     if (!data) return <div>loading...</div>;
   
@@ -16,7 +16,7 @@ export function MovieVideo({media_type}) {
             return item.type === "Trailer" && item;
           })
           ?.map((item) => (
-            <div key={item.id} className="w-full aspect-video py-10">
+            <div key={item.id} className="w-full py-10 aspect-video">
               <h2 className="section-title-primary">
                 {item.name}
               </h2>

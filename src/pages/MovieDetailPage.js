@@ -11,9 +11,9 @@ import CommentsFb from "../components/Facebook";
 function MovieDetailPage() {
   const { movieId } = useParams();
   const { state } = useLocation();
-  const media_type = state?.media_type;
+  const mediaType = state?.mediaType;
   const { data, error } = useSWR(
-    API.getMovieDetail(movieId, media_type),
+    API.getMovieDetail(movieId, mediaType),
     fetcher
   );
 
@@ -33,7 +33,7 @@ function MovieDetailPage() {
     first_air_date,
     number_of_episodes,
   } = data;
-  const url = `${REACT_APP_URL}/${media_type}/${movieId}`;
+  const url = `${REACT_APP_URL}/${mediaType}/${movieId}`;
   return (
     <div className="page-container">
       <div className="md:h-[500px] relative md:mb-10">
@@ -91,9 +91,9 @@ function MovieDetailPage() {
           </div>
         </div>
       </div>
-      <MovieCredit media_type={media_type}></MovieCredit>
-      <MovieVideo media_type={media_type}></MovieVideo>
-      <MovieSimilar media_type={media_type}></MovieSimilar>
+      <MovieCredit mediaType={mediaType}></MovieCredit>
+      <MovieVideo mediaType={mediaType}></MovieVideo>
+      <MovieSimilar mediaType={mediaType}></MovieSimilar>
       {/* <CommentsFb url={url}></CommentsFb> */}
       
     </div>
