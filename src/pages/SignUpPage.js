@@ -23,7 +23,7 @@ const SignUpPage = () => {
       });
       const collectionRef = collection(db, "users");
       await addDoc(collectionRef, {
-        fullName: values.fullName,
+        displayName: values.fullName,
         email: values.email,
         password: values.password,
         createdAt: serverTimestamp(),
@@ -48,7 +48,7 @@ const SignUpPage = () => {
     }
   }
   return (
-    <div className="text-center">
+    <div className="w-full text-center">
       <h4 className="mb-3 text-3xl font-semibold text-primary">Sign Up</h4>
       <p className="mb-3 text-sm">
         Already have an account? <br/>
@@ -98,6 +98,8 @@ const SignUpPage = () => {
               <Input
                 onChange={(e) => setFieldValue("password", e.target.value)}
                 placeholder="John109xyz"
+                icon={true}
+
               ></Input>
               {errors.password && touched.password && (
                 <div className="input__error">{errors.password}</div>

@@ -3,8 +3,8 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { AiFillHeart } from "react-icons/ai";
+import { useAuth } from "../context/auth-context";
 import { db } from "../firebase/firebase.config";
-import useGetUser from "../hooks/useGetUser";
 
 const removeFavorite = async (e, idMovie, mediaType, user) => {
   if (user) {
@@ -22,11 +22,11 @@ const removeFavorite = async (e, idMovie, mediaType, user) => {
 };
 
 const Heart = ({id, mediaType, className=''}) => {
-  const user = useGetUser()
+  const {userInfo} = useAuth()
   return (
     <span
-      onClick={(e) => removeFavorite(e, id, mediaType, user)}
-      className={`${className}`}
+      onClick={(e) => removeFavorite(e, id, mediaType, userInfo)}
+      className={`cursor-pointer ${className}`}
     >
       <AiFillHeart></AiFillHeart>
     </span>

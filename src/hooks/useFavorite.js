@@ -1,10 +1,10 @@
 import React from "react";
-import useGetUser from "./useGetUser";
+import { useAuth } from "../context/auth-context";
 
 export const useFavorite = (id) => {
-  const user = useGetUser();
-  if (user && id) {
-    const index = user.listFavorite && user.listFavorite.find((item) => item.id === id)
+  const {userInfo} = useAuth();
+  if (userInfo && id) {
+    const index = userInfo.listFavorite && userInfo.listFavorite.find((item) => item.id === id)
     return !!index;
 
   }

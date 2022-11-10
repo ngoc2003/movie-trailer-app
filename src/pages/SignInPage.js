@@ -19,13 +19,16 @@ const SignInPage = () => {
       await signInWithEmailAndPassword(auth, values.email, values.password);
       toast.success("Đăng nhập thành công", {
         pauseOnHover: false,
-        autoClose: 2000,
+        autoClose: 1500,
       });
       setTimeout(() => {
         navigate("/");
-      }, 2000);
+      }, 1500);
     } catch (err) {
-      toast.error("Please check your email and password");
+      toast.error("Please check your email and password",{
+        pauseOnHover: false,
+        autoClose: 1500,
+      });
     }
   }
   useEffect(() => {
@@ -73,6 +76,7 @@ const SignInPage = () => {
               <Input
                 onChange={(e) => setFieldValue("password", e.target.value)}
                 placeholder="John109xyz"
+                icon={true}
               ></Input>
               {errors.password && touched.password && (
                 <div className="input__error">{errors.password}</div>

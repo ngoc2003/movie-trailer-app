@@ -5,11 +5,10 @@ import Button from "../Button";
 import Loading from "../Loading";
 import { updateFavorite } from "../../utils/updateFavorite";
 import { useAuth } from "../../context/auth-context";
-import useGetUser from "../../hooks/useGetUser";
 import { useFavorite } from "../../hooks/useFavorite";
 import Heart from "../../utils/removeFavorite";
 export default function BannerItem({ item, mediaType }) {
-  const user = useGetUser();
+  const {userInfo} = useAuth();
   const isFavorite = useFavorite(item?.id);
 
   const navigate = useNavigate();
@@ -53,7 +52,7 @@ export default function BannerItem({ item, mediaType }) {
           ) : (
             <Button
               outline
-              onClick={(e) => updateFavorite(e, id, mediaType, user)}
+              onClick={(e) => updateFavorite(e, id, mediaType, userInfo)}
             >
               Add to favorite
             </Button>

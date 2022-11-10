@@ -35,11 +35,11 @@ export const sidebar = [
   {
     group: "Library",
     items: [
-      {
-        name: "Recent",
-        path: "/recent",
-        icon: <AiFillClockCircle></AiFillClockCircle>,
-      },
+      // {
+      //   name: "Recent",
+      //   path: "/recent",
+      //   icon: <AiFillClockCircle></AiFillClockCircle>,
+      // },
       {
         name: "Trending",
         path: "/trending",

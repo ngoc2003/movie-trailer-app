@@ -17,6 +17,7 @@ function AuthProvider(props) {
           snapshot.forEach((doc) => {
             setUserInfo({
               ...user,
+              id: doc.id,
               ...doc.data(),
             });
           });

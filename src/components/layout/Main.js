@@ -11,7 +11,7 @@ const Main = () => {
   const isDesktop = useMediaQuery("(min-width:950px)");
   const location = useLocation();
   useEffect(() => {
-    setShowNav(false);
+    setShowNav(isDesktop);
   }, [location]);
   useEffect(() => {
     if (isDesktop) {

@@ -5,7 +5,6 @@ import { API, fetcher } from "../../../config";
 import MovieCard from "../MovieCard";
 
 export function MovieSimilar({ mediaType }) {
-  console.log(mediaType)
   const { movieId } = useParams();
   const { data, error } = useSWR(
     API.getDetailMeta(movieId, "similar", mediaType),

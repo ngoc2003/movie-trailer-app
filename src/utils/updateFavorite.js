@@ -8,7 +8,6 @@ import {
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth-context";
 import { db } from "../firebase/firebase.config";
-import useGetUser from "../hooks/useGetUser";
 import { AiOutlinePlus } from "react-icons/ai";
 import { toast } from "react-toastify";
 const updateFavorite = async (e, idMovie, mediaType, user) => {
@@ -26,11 +25,11 @@ const updateFavorite = async (e, idMovie, mediaType, user) => {
 };
 
 const Add = ({ id, mediaType }) => {
-  const user = useGetUser();
+  const {userInfo} = useAuth()
   return (
     <span
       className="absolute flex items-center justify-center w-8 h-8 leading-none duration-200 rounded-full cursor-pointer hover:gap-3 top-3 right-3 bg-white/30 backdrop-blur-sm group hover:bg-primary hover:w-auto hover:px-3"
-      onClick={(e) => updateFavorite(e, id, mediaType, user)}
+      onClick={(e) => updateFavorite(e, id, mediaType, userInfo)}
     >
       <AiOutlinePlus></AiOutlinePlus>
       <span className="hidden text-transparent group-hover:block group-hover:text-white">

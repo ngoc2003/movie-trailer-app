@@ -17,8 +17,6 @@ const UserPage = lazy(() => import("./pages/UserPage"));
 const SignUpPage = lazy(() => import("./pages/SignUpPage"));
 const SignInPage = lazy(() => import("./pages/SignInPage"));
 function App() {
-  // const { userInfo } = useAuth();
-
   return (
     <AuthProvider>
       <Suspense fallback={<></>}>

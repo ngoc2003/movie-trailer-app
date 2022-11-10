@@ -1,22 +1,31 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import {  NavLink, useLocation, useNavigate } from "react-router-dom";
 import { BiLogOut } from "react-icons/bi";
-// import { AiFillSetting } from "react-icons/ai";
-// import { IoLogOut } from "react-icons/io5";
 import { sidebar } from "../../base/sidebar";
 import { useAuth } from "../../context/auth-context";
 import Button from "../Button";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/firebase.config";
 import avatarDefault from "../../images/avatar_default.jpg";
-import { AiFillSetting } from "react-icons/ai";
+import {toast} from "react-toastify"
 const SideBar = React.forwardRef((props, ref) => {
   const { showNav } = props;
   const { userInfo } = useAuth();
+  const location = useLocation()
   const handleLogout = () => {
     signOut(auth);
     window.location.reload();
   };
+  
+  useEffect( () => {
+    if (userInfo && userInfo.fullName) {
+      toast.success(`Welcom back, ${userInfo.displayName}`,{
+        pauseOnHover: false,
+        autoClose: 1500,
+      })
+    }
+    
+  }, [])
   return (
     <div
       ref={ref}
@@ -58,11 +67,11 @@ const SideBar = React.forwardRef((props, ref) => {
                 }
               >
                 <img
-                  src={avatarDefault}
+                  src={userInfo.image || avatarDefault}
                   alt=""
                   className="object-cover w-6 h-6 rounded-full"
                 />
-                <span>{userInfo.fullName || "Anonymous"}</span>
+                <span>{userInfo.displayName || "Anonymous"}</span>
               </NavLink>
               {/* <NavLink
                   to={'/setting'}

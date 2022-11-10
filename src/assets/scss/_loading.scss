@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  &.page-loading{
-    height:100vh;
+  &.page-loading {
+    height: 100vh;
   }
 }
 .lds-ripple {
@@ -12,6 +12,7 @@
   position: relative;
   width: 80px;
   height: 80px;
+  
   & div {
     position: absolute;
     border: 4px solid #fff;
@@ -22,6 +23,7 @@
       animation-delay: -0.8s;
     }
   }
+  
 }
 @keyframes lds-ripple {
   0% {
